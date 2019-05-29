@@ -21,7 +21,17 @@ steps:
   inputs:
     command: 'build'
     projects: '**/src/Orange.StatsD/*.csproj'
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/src/Orange.StatsD/*.csproj'
+    versioningScheme: 'off'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '/832c3bd4-efce-4e6c-b3bc-cf78fc8c1848'
 # steps:
 # - task: DotNetCoreInstaller@0
 #   inputs:
