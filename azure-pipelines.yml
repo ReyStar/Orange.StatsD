@@ -11,11 +11,21 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-
 steps:
-- task: DotNetCoreInstaller@0
+- task: DotNetCoreCLI@2
   inputs:
-    version: '2.1.300'
+    command: 'restore'
+    projects: '**/src/Orange.StatsD/*.csproj'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/src/Orange.StatsD/*.csproj'
+
+# steps:
+# - task: DotNetCoreInstaller@0
+#   inputs:
+#     version: '2.1.300'
 
 
 # steps:
@@ -29,9 +39,9 @@ steps:
   #   projects: 'src'
 
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '/832c3bd4-efce-4e6c-b3bc-cf78fc8c1848'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: '/832c3bd4-efce-4e6c-b3bc-cf78fc8c1848'
