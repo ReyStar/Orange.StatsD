@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.0-alpha</Version>
+    <Authors>mr.Star</Authors>
+    <Company>mr.Star</Company>
+    <Description>Simple StatsD client</Description>
+    <PackageProjectUrl>https://github.com/ReyStar/Orange.StatsD</PackageProjectUrl>
+    <PackageTags>StatsD</PackageTags>
+    <PackageReleaseNotes>- initialize version</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
