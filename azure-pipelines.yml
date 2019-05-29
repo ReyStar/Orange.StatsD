@@ -31,7 +31,16 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '/832c3bd4-efce-4e6c-b3bc-cf78fc8c1848'
+    publishVstsFeed: '/570a8f14-118c-469b-aac2-9a55d849f703'
+
+
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: '/832c3bd4-efce-4e6c-b3bc-cf78fc8c1848'
 # steps:
 # - task: DotNetCoreInstaller@0
 #   inputs:
