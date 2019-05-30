@@ -25,7 +25,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/src/Orange.StatsD/*.csproj'
-    versioningScheme: off
+    versioningScheme: byPrereleaseNumber
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
