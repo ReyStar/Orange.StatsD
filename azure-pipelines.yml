@@ -32,6 +32,14 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'nuget_external_service'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget_external_service'
+
 # - task: DotNetCoreCLI@2
 #   inputs:
 #     command: 'push'
