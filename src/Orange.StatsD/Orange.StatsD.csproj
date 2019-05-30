@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,6 +9,10 @@
     <PackageProjectUrl>https://github.com/ReyStar/Orange.StatsD</PackageProjectUrl>
     <PackageTags>StatsD</PackageTags>
     <PackageReleaseNotes>- initialize version</PackageReleaseNotes>
+    <Copyright>© mr.Star</Copyright>
+    <RepositoryUrl>https://github.com/ReyStar/Orange.StatsD.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
