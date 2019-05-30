@@ -51,10 +51,10 @@ public interface IMeasurementProvider : IDisposable
     double? sampleRate = null,
     string format = null);
 
-  //Send metrisc buffer to server
+  //Send metrics buffer to server
   void Flush();
 
-  //Send metrisc buffer to server in async mode
+  //Send metrics buffer to server in async mode
   Task FlushAsync();
 }
 
