@@ -40,8 +40,3 @@ steps:
 #     nuGetFeedType: 'internal'
 #     publishVstsFeed: '/570a8f14-118c-469b-aac2-9a55d849f703'
 # - task: DotNetCoreCLI@2
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'nuget_service'
