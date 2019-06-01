@@ -5,46 +5,68 @@ namespace Orange.StatsD
 {
     public interface IMeasurementProvider : IDisposable
     {
-        // Add int counter metrics with sample rate
-        void AddCounter(string key, int value, double sampleRate = 1.0);
+        /// <summary>
+        /// Add int counter metrics with sample rate
+        /// </summary>
+        IMeasurementProvider AddCounter(string key, int value, double? sampleRate = null);
 
-        // Add double counter metrics with sample rate
-        void AddCounter(string key, double value, double sampleRate = 1.0);
+        /// <summary>
+        /// Add double counter metrics with sample rate
+        /// </summary>
+        IMeasurementProvider AddCounter(string key, double value, double? sampleRate = null);
 
-        // Add int time metrics in milliseconds with sample rate
-        void AddTimer(string key, int value, double sampleRate = 1.0);
+        /// <summary>
+        /// Add int time metrics in milliseconds with sample rate
+        /// </summary>
+        IMeasurementProvider AddTimer(string key, int value, double? sampleRate = null);
 
-        // Add double time metrics in milliseconds with sample rate. 
-        // It's must be more than zero
-        void AddTimer(string key, double value, double sampleRate = 1.0);
+        /// <summary>
+        /// Add double time metrics in milliseconds with sample rate. 
+        /// It's must be more than zero
+        /// </summary>
+        IMeasurementProvider AddTimer(string key, double value, double? sampleRate = null);
 
-        // Add double gauge metrics in milliseconds
-        // It's can be write as a delta
-        void AddGauge(string key, double value, bool isDelta = false);
+        /// <summary>
+        /// Add double gauge metrics in milliseconds
+        /// It's can be write as a delta
+        /// </summary>
+        IMeasurementProvider AddGauge(string key, double value, bool isDelta = false);
 
-        // Add int histogram metrics in milliseconds
-        void AddHistogram(string key, int value);
+        /// <summary>
+        /// Add int histogram metrics in milliseconds
+        /// </summary>
+        IMeasurementProvider AddHistogram(string key, int value);
 
-        // Add double histogram metrics in milliseconds
-        void AddHistogram(string key, double value);
+        /// <summary>
+        /// Add double histogram metrics in milliseconds
+        /// </summary>
+        IMeasurementProvider AddHistogram(string key, double value);
 
-        void AddMeter(string key, int value);
+        IMeasurementProvider AddMeter(string key, int value);
 
-        //Add set value
-        void AddSet(string key, string value);
+        /// <summary>
+        /// Add set value
+        /// </summary>
+        IMeasurementProvider AddSet(string key, string value);
 
-        //Add any metrics by StatsD server type
-        void AddMetric<T>(
+        /// <summary>
+        /// Add any metrics by StatsD server type
+        /// </summary>
+        IMeasurementProvider AddMetric<T>(
             string key,
             T value,
             string statsDNamespace,
             double? sampleRate = null,
             string format = null);
 
-        //Send metrics buffer to server
-        void Flush();
+        /// <summary>
+        /// Send metrics buffer to server
+        /// </summary>
+        IMeasurementProvider Flush();
 
-        //Send metrics buffer to server in async mode
-        Task FlushAsync();
+        /// <summary>
+        /// Send metrics buffer to server in async mode
+        /// </summary>
+        Task<IMeasurementProvider> FlushAsync();
     }
 }

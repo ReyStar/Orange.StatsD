@@ -26,15 +26,15 @@ steps:
     command: 'pack'
     packagesToPack: '**/src/Orange.StatsD/*.csproj'
     versioningScheme: byPrereleaseNumber
-- task: DotNetCoreCLI@2
+- task: 'nugetcommand@2'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '/570a8f14-118c-469b-aac2-9a55d849f703'
-# - task: 'NuGetCommand@2'
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'nuget_external_service'
+    packagestopush: '$(build.artifactstagingdirectory)/**/*.nupkg;!$(build.artifactstagingdirectory)/**/*.symbols.nupkg'
+    nugetfeedtype: 'external'
+    publishfeedcredentials: 'nuget_external_service'
+# - task: DotNetCoreCLI@2
+  # inputs:
+    # command: 'push'
+    # packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    # nuGetFeedType: 'internal'
+    # publishVstsFeed: '/570a8f14-118c-469b-aac2-9a55d849f703'

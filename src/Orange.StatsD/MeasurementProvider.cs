@@ -47,61 +47,61 @@ namespace Orange.StatsD
             OnDispose(false);
         }
 
-        public void AddCounter(string key, int value, double sampleRate = 1.0)
+        public IMeasurementProvider AddCounter(string key, int value, double? sampleRate = null)
         {
-            AddMetric(key, value, StatsDNamespaces.CountingPostfix, sampleRate);
+            return AddMetric(key, value, StatsDNamespaces.CountingPostfix, sampleRate);
         }
 
-        public void AddCounter(string key, double value, double sampleRate = 1.0)
+        public IMeasurementProvider AddCounter(string key, double value, double? sampleRate = null)
         {
-            AddMetric(key, value, StatsDNamespaces.CountingPostfix, sampleRate, DoubleStringFormat);
+            return AddMetric(key, value, StatsDNamespaces.CountingPostfix, sampleRate, DoubleStringFormat);
         }
 
-        public void AddTimer(string key, int value, double sampleRate = 1.0)
+        public IMeasurementProvider AddTimer(string key, int value, double? sampleRate = null)
         {
-            AddMetric(key, value, StatsDNamespaces.TimingPostfix, sampleRate);
+            return AddMetric(key, value, StatsDNamespaces.TimingPostfix, sampleRate);
         }
 
-        public void AddTimer(string key, double value, double sampleRate = 1.0)
+        public IMeasurementProvider AddTimer(string key, double value, double? sampleRate = null)
         {
             if (value < 0)
             {
                 throw new ArgumentOutOfRangeException($"Argument {nameof(value)} must be greater then zero.");
             }
 
-            AddMetric(key, value, StatsDNamespaces.TimingPostfix, sampleRate, DoubleStringFormat);
+            return AddMetric(key, value, StatsDNamespaces.TimingPostfix, sampleRate, DoubleStringFormat);
         }
 
-        public void AddGauge(string key, double value, bool isDelta = false)
+        public IMeasurementProvider AddGauge(string key, double value, bool isDelta = false)
         {
-            AddMetric(key, value, StatsDNamespaces.GaugePostfix, format: isDelta ? DeltaStringFormat : DoubleStringFormat);
+            return AddMetric(key, value, StatsDNamespaces.GaugePostfix, format: isDelta ? DeltaStringFormat : DoubleStringFormat);
         }
 
-        public void AddHistogram(string key, int value)
+        public IMeasurementProvider AddHistogram(string key, int value)
         {
-            AddMetric(key, value, StatsDNamespaces.HistogramPostfix);
+            return AddMetric(key, value, StatsDNamespaces.HistogramPostfix);
         }
 
-        public void AddHistogram(string key, double value)
+        public IMeasurementProvider AddHistogram(string key, double value)
         {
-            AddMetric(key, value, StatsDNamespaces.HistogramPostfix, format: DoubleStringFormat);
+            return AddMetric(key, value, StatsDNamespaces.HistogramPostfix, format: DoubleStringFormat);
         }
 
-        public void AddMeter(string key, int value)
+        public IMeasurementProvider AddMeter(string key, int value)
         {
-            AddMetric(key, value, StatsDNamespaces.MeterPostfix);
+            return AddMetric(key, value, StatsDNamespaces.MeterPostfix);
         }
 
-        public void AddSet(string key, string value)
+        public IMeasurementProvider AddSet(string key, string value)
         {
-            AddMetric(key, value, StatsDNamespaces.SetPostfix);
+            return AddMetric(key, value, StatsDNamespaces.SetPostfix);
         }
 
-        public void AddMetric<T>(string key, 
-                                 T value, 
-                                 string statsDNamespace, 
-                                 double? sampleRate = null, 
-                                 string format = null)
+        public IMeasurementProvider AddMetric<T>(string key, 
+                                                 T value, 
+                                                 string statsDNamespace, 
+                                                 double? sampleRate = null, 
+                                                 string format = null)
         {
             SynchronizeResource(() =>
             {
@@ -126,16 +126,18 @@ namespace Orange.StatsD
 
                 _buffer.Append('\n');
             });
+
+            return this;
         }
 
-        public void Flush()
+        public IMeasurementProvider Flush()
         {
-            FlushAsync().ConfigureAwait(false)
-                        .GetAwaiter()
-                        .GetResult();
+            return FlushAsync().ConfigureAwait(false)
+                               .GetAwaiter()
+                               .GetResult();
         }
 
-        public Task FlushAsync()
+        public async Task<IMeasurementProvider> FlushAsync()
         {
             string message = null;
             SynchronizeResource(() =>
@@ -147,10 +149,10 @@ namespace Orange.StatsD
             if (!string.IsNullOrWhiteSpace(message))
             {
                 var bytes = Encoding.UTF8.GetBytes(message);
-                return _client.SendAsync(bytes, bytes.Length);
+                await _client.SendAsync(bytes, bytes.Length);
             }
 
-            return Task.FromResult(0);
+            return this;
         }
 
         public void Dispose()
