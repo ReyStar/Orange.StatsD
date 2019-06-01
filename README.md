@@ -1,3 +1,5 @@
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReyStar/Orange.StatsD/blob/master/LICENSE)
+[![Build Status](https://dev.azure.com/starandrey/starandrey/_apis/build/status/ReyStar.Orange.StatsD?branchName=master)](https://dev.azure.com/starandrey/starandrey/_build/latest?definitionId=1&branchName=master) [![NuGet](https://buildstats.info/nuget/Orange.StatsD?includePreReleases=true)](https://www.nuget.org/packages/Orange.StatsD/)
 # Orange.StatsD
 Simple buffered StatsD client implementation
 ## Project target
