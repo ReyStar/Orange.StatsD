@@ -23,15 +23,20 @@ steps:
     projects: '**/src/Orange.StatsD/*.csproj'
 - task: DotNetCoreCLI@2
   inputs:
+    command: test
+    projects: '**/src/Orange.StatsD/Tests/Orange.StatsD.Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'pack'
     packagesToPack: '**/src/Orange.StatsD/*.csproj'
     versioningScheme: byPrereleaseNumber
-- task: 'nugetcommand@2'
-  inputs:
-    command: 'push'
-    packagestopush: '$(build.artifactstagingdirectory)/**/*.nupkg;!$(build.artifactstagingdirectory)/**/*.symbols.nupkg'
-    nugetfeedtype: 'external'
-    publishfeedcredentials: 'nuget_external_service'
+# - task: 'nugetcommand@2'
+#   inputs:
+#     command: 'push'
+#     packagestopush: '$(build.artifactstagingdirectory)/**/*.nupkg;!$(build.artifactstagingdirectory)/**/*.symbols.nupkg'
+#     nugetfeedtype: 'external'
+#     publishfeedcredentials: 'nuget_external_service'
 # - task: DotNetCoreCLI@2
   # inputs:
     # command: 'push'
