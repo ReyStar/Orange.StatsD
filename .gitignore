@@ -328,3 +328,12 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+documentation/*
+!documentation/.gitkeep
+
+environment/grafana/*
+!environment/grafana/.gitkeep
+
+environment/graphite/*
+!environment/graphite/.gitkeep
