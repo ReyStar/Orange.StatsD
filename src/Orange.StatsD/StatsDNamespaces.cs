@@ -1,6 +1,6 @@
 ﻿namespace Orange.StatsD
 {
-    internal class StatsDNamespaces
+    public class StatsDNamespaces
     {
         public const string CountingPostfix = "c";
         public const string TimingPostfix = "ms";
