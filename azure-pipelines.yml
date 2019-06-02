@@ -23,9 +23,9 @@ steps:
     projects: '**/src/Orange.StatsD/*.csproj'
 - task: DotNetCoreCLI@2
   inputs:
-    command: test
-    projects: '**/src/Orange.StatsD/Tests/Orange.StatsD.Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    command: 'test'
+    projects: '**/src/Tests/Orange.StatsD.Tests/*.csproj'
+    testRunTitle: 'Unit'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
