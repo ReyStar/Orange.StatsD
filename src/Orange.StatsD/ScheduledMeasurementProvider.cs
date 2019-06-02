@@ -19,11 +19,11 @@ namespace Orange.StatsD
         /// <summary>
         /// Create provider instance
         /// </summary>
-        /// <param name="keyPrefix">Metrics prefix</param>
+        /// <param name="scope">Metrics prefix</param>
         /// <param name="client">StatsD client</param>
         /// <param name="sendPeriod">period to flush metrics, must be very small</param>
-        public ScheduledMeasurementProvider(string keyPrefix, IStatsDClient client, TimeSpan sendPeriod)
-            : base(keyPrefix, client)
+        public ScheduledMeasurementProvider(string scope, IStatsDClient client, TimeSpan sendPeriod)
+            : base(scope, client)
         {
             _sendPeriod = sendPeriod;
             _tokenSource = new CancellationTokenSource();

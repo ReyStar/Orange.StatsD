@@ -16,7 +16,7 @@ namespace Orange.StatsD
         private SpinLock _spinLock;
         private IStatsDClient _client;
         private readonly StringBuilder _buffer;
-        private readonly string _keyPrefix;
+        private readonly string _scope;
         private const string DoubleStringFormat = "{0:F15}";
         private const string DeltaStringFormat = "{0:+#.###;-#.###;+0}";
         private const int MillisecondsTimeout = 10;
@@ -24,19 +24,19 @@ namespace Orange.StatsD
         ///<summary>
         /// Create provider instance
         /// </summary>
-        /// <param name="keyPrefix">Metrics prefix</param>
+        /// <param name="scope">Metrics prefix</param>
         /// <param name="client">StatsD client</param>
-        public MeasurementProvider(string keyPrefix, IStatsDClient client)
+        public MeasurementProvider(string scope, IStatsDClient client)
         {
-            if (string.IsNullOrWhiteSpace(keyPrefix))
+            if (string.IsNullOrWhiteSpace(scope))
             {
-                throw new ArgumentException($"{nameof(keyPrefix)} can't be null or empty");
+                throw new ArgumentException($"{nameof(scope)} can't be null or empty");
             }
 
             _client = client ?? throw new ArgumentNullException($"{nameof(client)} can't be null");
 
             _spinLock = new SpinLock(true);
-            _keyPrefix = keyPrefix;
+            _scope = scope;
 
             _client.Connect();
             _buffer = new StringBuilder();
@@ -105,7 +105,7 @@ namespace Orange.StatsD
         {
             SynchronizeResource(() =>
             {
-                _buffer.Append(_keyPrefix).Append('.').Append(key).Append(':');
+                _buffer.Append(_scope).Append('.').Append(key).Append(':');
 
                 if (format != null)
                 {
