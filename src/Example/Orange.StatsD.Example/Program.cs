@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Orange.StatsD.Transport;
 
 namespace Orange.StatsD.Example
 {
@@ -9,14 +10,14 @@ namespace Orange.StatsD.Example
         {
             var arr = new int[] { -1, 1 };
 
-            using (var transport = new Orange.StatsD.Transport.StatsDUdpClient("localhost", 8125))
+            using (var transport = new ClientWrapperToTesting<StatsDUdpClient>(new StatsDUdpClient("localhost", 8125)))
             {
-                using (var client = new Orange.StatsD.MeasurementProvider("application", transport))
+                using (var client = new MeasurementProvider("application", transport))
                 {
                     var random = new Random(Guid.NewGuid().GetHashCode());
                     var count = 0;
 
-                    while (++count < 100)
+                    while (++count < 10000)
                     {
                         var r1 = random.Next(1, 100);
                         await client.AddTimer("metric-timer-1", r1)
