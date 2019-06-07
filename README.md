@@ -31,7 +31,7 @@ MeasurementProvider inmpelemetn IMeasurementProvider interface with next methods
 |void Dispose()|Sync-send metrics buffer to StatsD server then dispose provider instance|
 
 ## Example
-For testing I recommendate start docker container configuration from 'environment' directory and then compile and run example project 'src/Example/Orange.StatsD.Example/Orange.StatsD.Example.csproj'
+For example I recommendate start docker container configuration from 'environment' directory and then compile and run example project 'src/Example/Orange.StatsD.Example/Orange.StatsD.Example.csproj'
 
 Before all tests need download or clone reposotory on u computer. U can do it use other ways and I won't explain anything.
 
@@ -103,3 +103,39 @@ class Program
     }
 }
 ```
+### How metrics look
+
+U can analisis metrics results in two applications: Graphite and Grafana.
+
+#### Graphite
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/view_example_4.png" alt="view_example_4.png" width="800"/>
+
+#### Grafana
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/choice_data_source.png" alt="choice_data_source.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/dashbord_creating.png" alt="dashbord_creating.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/data_source_configuration_step_1.png" alt="data_source_configuration_step_1.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/data_source_configuration_step_2.png" alt="data_source_configuration_step_2.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/data_source_configuration_step_3.png" alt="data_source_configuration_step_3.png" width="800"/>
+
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/data_source_configuration_step_4.png" alt="data_source_configuration_step_4.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/data_source_configuration_step_5.png" alt="data_source_configuration_step_5.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/default_login.png" alt="default_login.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/graphana_sing_in.png" alt="graphana_sing_in.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/view_example.png" alt="view_example.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/view_example_2.png" alt="view_example_2.png" width="800"/>
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/view_example_3.png" alt="view_example_3.png" width="800"/>
+
+
