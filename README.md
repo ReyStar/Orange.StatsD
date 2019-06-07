@@ -14,75 +14,22 @@ Create a small and light library for sending metrics to graphite using [StatsD p
   
 MeasurementProvider inmpelemetn IMeasurementProvider interface with next methods:
 
-```csharp
-public interface IMeasurementProvider : IDisposable
-{
-    /// <summary>
-    /// Add int counter metrics with sample rate
-    /// </summary>
-    IMeasurementProvider AddCounter(string key, int value, double? sampleRate = null);
+| Method | Description |
+| ------ | ------ |
+|IMeasurementProvider AddCounter(string key, int value, double? sampleRate = null);|Add int counter metrics with sample rate|
+|IMeasurementProvider AddCounter(string key, double value, double? sampleRate = null);|Add double counter metrics with sample rate|
+|IMeasurementProvider AddTimer(string key, int value, double? sampleRate = null);|Add int time metrics in milliseconds with sample rate|
+|IMeasurementProvider AddTimer(string key, double value, double? sampleRate = null);|It's must be more than zero|Add double time metrics in milliseconds with sample rate.|
+|IMeasurementProvider AddGauge(string key, double value, bool isDelta = false);|Add double gauge metrics in milliseconds. It's can be write as a delta|
+|IMeasurementProvider AddHistogram(string key, int value);|Add int histogram metrics in milliseconds|
+|IMeasurementProvider AddHistogram(string key, double value);|Add double histogram metrics in milliseconds|
+|IMeasurementProvider AddMeter(string key, int value);|Add meters statistics|
+|IMeasurementProvider AddSet(string key, string value);|Add set value|
+|IMeasurementProvider AddMetric<T>(string key, T value, string statsDNamespace, double? sampleRate = null, string format = null);|Add any metrics by StatsD server type|
+|IMeasurementProvider Flush();|Sync-send metrics buffer to StatsD server|
+|Task<IMeasurementProvider> FlushAsync();|Async-Send metrics buffer to StatsS server|
+|void Dispose()|Sync-send metrics buffer to StatsD server then dispose provider instance|
 
-    /// <summary>
-    /// Add double counter metrics with sample rate
-    /// </summary>
-    IMeasurementProvider AddCounter(string key, double value, double? sampleRate = null);
-
-    /// <summary>
-    /// Add int time metrics in milliseconds with sample rate
-    /// </summary>
-    IMeasurementProvider AddTimer(string key, int value, double? sampleRate = null);
-
-    /// <summary>
-    /// Add double time metrics in milliseconds with sample rate. 
-    /// It's must be more than zero
-    /// </summary>
-    IMeasurementProvider AddTimer(string key, double value, double? sampleRate = null);
-
-    /// <summary>
-    /// Add double gauge metrics in milliseconds
-    /// It's can be write as a delta
-    /// </summary>
-    IMeasurementProvider AddGauge(string key, double value, bool isDelta = false);
-
-    /// <summary>
-    /// Add int histogram metrics in milliseconds
-    /// </summary>
-    IMeasurementProvider AddHistogram(string key, int value);
-
-    /// <summary>
-    /// Add double histogram metrics in milliseconds
-    /// </summary>
-    IMeasurementProvider AddHistogram(string key, double value);
-
-    IMeasurementProvider AddMeter(string key, int value);
-
-    /// <summary>
-    /// Add set value
-    /// </summary>
-    IMeasurementProvider AddSet(string key, string value);
-
-    /// <summary>
-    /// Add any metrics by StatsD server type
-    /// </summary>
-    IMeasurementProvider AddMetric<T>(
-        string key,
-        T value,
-        string statsDNamespace,
-        double? sampleRate = null,
-        string format = null);
-
-    /// <summary>
-    /// Send metrics buffer to server
-    /// </summary>
-    IMeasurementProvider Flush();
-
-    /// <summary>
-    /// Send metrics buffer to server in async mode
-    /// </summary>
-    Task<IMeasurementProvider> FlushAsync();
-}
-```
-  
 ## Example
 For testing I recommendate start docker container configuration from 'environment' directory and then compile and run example project 'src/Example/Orange.StatsD.Example/Orange.StatsD.Example.csproj'
 
