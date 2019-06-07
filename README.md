@@ -1,14 +1,14 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ReyStar/Orange.StatsD/blob/master/LICENSE)
 [![Build Status](https://dev.azure.com/starandrey/starandrey/_apis/build/status/ReyStar.Orange.StatsD?branchName=master)](https://dev.azure.com/starandrey/starandrey/_build/latest?definitionId=1&branchName=master) [![NuGet](https://buildstats.info/nuget/Orange.StatsD?includePreReleases=true)](https://www.nuget.org/packages/Orange.StatsD/)
-#Orange.StatsD
+# Orange.StatsD
 Simple buffered StatsD client implementation
-##Project target
+## Project target
 Create a small and light library for sending metrics to graphite using [StatsD protocol](https://github.com/statsd/statsd). This library provide collection next metrics types: Timing, Gauges, Sets, Histogram, Counting.
-##Components
-###Transport
+## Components
+### Transport
   - StatsDUdpClient - UDP client to StatsD server 
   - StatsDTcpClient - TCP client to StatsD server
-###Metrics collector
+### Metrics collector
   - MeasurementProvider - buffered metrics collecror
   - ScheduledMeasurementProvider - buffered metrics collector with flush by timer functionality
   
@@ -83,15 +83,15 @@ public interface IMeasurementProvider : IDisposable
 }
 ```
   
-##Example
+## Example
 For testing I recommendate start docker container configuration from 'environment' directory and then compile and run example project 'src/Example/Orange.StatsD.Example/Orange.StatsD.Example.csproj'
 
 Before all tests need download or clone reposotory on u computer, u can do it use other ways and I don't explain it.
 
-###Up docker container:
+### Up docker container:
 For run docker containers need in 'environment' directory do next command: 'docker-compose up -d'. It's run graphite and graphana containers. 
-[![environment_up](https://github.com/ReyStar/Orange.StatsD/tree/master/documentation/img/environment_up.png)]
-###Compule and run example project:
+![environment_up](https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/environment_up.png)
+### Compule and run example project:
 DotNet command: 
   - dotnet restore
   - dotnet build
