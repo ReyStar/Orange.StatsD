@@ -86,17 +86,21 @@ public interface IMeasurementProvider : IDisposable
 ## Example
 For testing I recommendate start docker container configuration from 'environment' directory and then compile and run example project 'src/Example/Orange.StatsD.Example/Orange.StatsD.Example.csproj'
 
-Before all tests need download or clone reposotory on u computer, u can do it use other ways and I don't explain it.
+Before all tests need download or clone reposotory on u computer. U can do it use other ways and I won't explain anything.
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/how_it's_download.png" alt="how_it's_download" width="800"/>
 
 ### Up docker container:
 For run docker containers need in 'environment' directory do next command: 'docker-compose up -d'. It's run graphite and graphana containers. 
-![environment_up](https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/environment_up.png)
-### Compule and run example project:
-DotNet command: 
-  - dotnet restore
-  - dotnet build
-  - dotnet run
 
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/environment_up.png" alt="environment_up" width="800"/>
+
+### Compule and run example project:
+For Compule and run example project need execute next DotNet commands: dotnet restore | dotnet build | dotnet run
+
+<img src="https://raw.githubusercontent.com/ReyStar/Orange.StatsD/master/documentation/img/launched_example_application.png" alt="launched_example_application" width="800"/>
+
+#### Example application text
 ```csharp
 class Program
 {
